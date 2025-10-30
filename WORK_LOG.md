@@ -1,9 +1,9 @@
 Name: YOUR NAME HERE
 
-| Date    |  Time  |                                     Update |
-|:--------|:------:|-------------------------------------------:|
-| April 5 | 9-10pm | I tried to write abstract, efficient code. |
-|         |        |                                            |
+| Date       |       Time       |                                                                                                                                                                                                                                                                                                                                                                                                                        Update |
+|:-----------|:----------------:|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+| April 5    |      9-10pm      |                                                                                                                                                                                                                                                                                                                                                                                    I tried to write abstract, efficient code. |
+| October 30 | 11:30 - 11:50 am | I started by just reading over the problem set and getting a grasp for what it is asking. My initial thinking is that I will need to create a smaller map which contains arraylists. From there I will have an array list which has the same first four digits. Then I will find the correct value from the last four digits and return that. I need to figure out how to turn the Buffered Reader into a file of key values. |
 
 
 To add a new row to the table, click into a cell and then hit shift-enter.
