@@ -16,7 +16,8 @@ public class Finder {
 
     // Prime number to be an effective mod
     // Around 1 million elements to fit in memory
-    private static final int SIZE = 1000003;
+    private static final int SIZE = 1000000003;
+    Node[] table = new Node[SIZE];
 
     public Finder() {
     }
@@ -25,7 +26,6 @@ public class Finder {
     public void buildTable(BufferedReader br, int keyCol, int valCol) throws IOException {
 
         // table to store chained nodes
-        Node[] table = new Node[SIZE];
 
 
         String line = br.readLine();
@@ -74,13 +74,32 @@ public class Finder {
                 // Set the index to the new entry
                 table[index] = newEntry;
             }
+            line = br.readLine();
         }
 
         br.close();
     }
 
+    // Method to find a given item with its UPC Code
     public String query(String key) {
-        // TODO: Complete the query() function!
+        int index = Integer.parseInt(key);
+
+        // Set the first node to the top of the chain in the table
+        Node temp = table[index % SIZE];
+
+        // Until you reach the end of the chail
+        while(temp != null) {
+
+            // If your key is equal to the node's key
+            if(key.equals(temp.getKey())) {
+                // Return its value
+                return temp.getValue();
+            } else {
+                // Otherwise move down the chain
+                temp = temp.getNext();
+            }
+        }
+
         return INVALID;
     }
 }
