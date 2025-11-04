@@ -17,6 +17,8 @@ public class Finder {
     // Prime number to be an effective mod
     // Around 1 million elements to fit in memory
     private static final int SIZE = 1000000003;
+
+    // table to store chained nodes
     Node[] table = new Node[SIZE];
 
     public Finder() {
@@ -24,9 +26,6 @@ public class Finder {
 
     // Method to build data structure which holds all items in CSV file
     public void buildTable(BufferedReader br, int keyCol, int valCol) throws IOException {
-
-        // table to store chained nodes
-
 
         String line = br.readLine();
 
@@ -39,14 +38,16 @@ public class Finder {
             String key = parts[keyCol];
             String value = parts[valCol];
 
-            // Create a unique AASCI value based on the key
+            // Generate a rolling hash value by creating a unique ASCII value based on the key
+            // 31 is what the HashCode method in java does
+            // Also its prime and an odd number to prevent collisions
             int AASCI = 0;
             for (int i = 0; i < key.length(); i++) {
                 AASCI = 31 * AASCI + key.charAt(i);
             }
 
             // Make sure that fits in your table through modding
-            int index = AASCI % SIZE;
+            int index = Math.abs(AASCI % SIZE);
 
             // Set this as your current node
             Node current = table[index];
@@ -82,10 +83,15 @@ public class Finder {
 
     // Method to find a given item with its UPC Code
     public String query(String key) {
-        int index = Integer.parseInt(key);
+
+        // Generate the rolling hash value
+        int AASCI = 0;
+        for(int i = 0; i < key.length(); i++) {
+            AASCI = AASCI * 31 + key.charAt(i);
+        }
 
         // Set the first node to the top of the chain in the table
-        Node temp = table[index % SIZE];
+        Node temp = table[Math.abs(AASCI % SIZE)];
 
         // Until you reach the end of the chail
         while(temp != null) {
